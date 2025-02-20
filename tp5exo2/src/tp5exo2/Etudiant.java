@@ -39,6 +39,7 @@ public class Etudiant {
     	}
         
     }
+//	gg bro u did a good job
     
     public double calculerMoyenne() throws MoyenneException
     {
