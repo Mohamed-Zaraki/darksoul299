@@ -1,12 +1,15 @@
 package Gen;
 
+import java.util.Arrays;
+
 public class Stack<T> {
 
-	private Object[]tab;
+	private T[]tab;
 	private int size;
-	private final int maxsize;
+	private  int maxsize;
+	@SuppressWarnings("unchecked")
 	public Stack(int maxsize) {
-		this.tab = new Object[maxsize];
+		this.tab = (T[]) new Object[maxsize];
 		this.size = -1;
 		this.maxsize = maxsize;
 	}
@@ -19,21 +22,20 @@ public class Stack<T> {
 	
 	public boolean StackFull()
 	{
-		if(maxsize <=size)
+		if(maxsize <=size +1)
 			return true;
 		return false;
 	}
-	public void push(T element) throws StackEmptyException, StackFullException 
+	public void push(T element) throws  StackFullException 
 	{
 		
-		if(StackEmpty())
-			throw new StackEmptyException("Stack is Empty");
-		else if(StackFull())
+		
+		 if(StackFull())
 			throw new StackFullException("Stack is full");
 		else
-		tab[size++]=element;
+		tab[++size]=element;
 	}
-	@SuppressWarnings("unchecked")
+	
 	public T pop() throws StackEmptyException 
 	{
 		if(StackEmpty())
@@ -42,6 +44,42 @@ public class Stack<T> {
 			return
 					(T) tab[size--];
 	}
+	
+	public void AfficheSommet()
+	{
+		if(StackEmpty())
+		{
+			return;
+		}
+		System.out.println(Arrays.toString(tab));
+	}
+	public T  peek() throws StackEmptyException
+	{
+		if(StackEmpty())
+			throw new StackEmptyException("Stack is empty");
+		return  
+				(T) tab[size];
+	}
+	public int getSize() {
+		return size;
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public T[] getTab() {
+		return tab;
+	}
+	public void setTab(T[] tab) {
+		this.tab = tab;
+	}
+	public int getMaxsize() {
+		return maxsize;
+	}
+	public void setMaxsize(int maxsize) {
+		this.maxsize = maxsize;
+	}
+	
 	
 
 
